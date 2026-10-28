@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FIPE Caminhões — Consulta Oficial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap header-row">
+      <a class="brand" href="#" data-view="consulta">
+        <span class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 6h10v9H3z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M13 9h4l3 3v3h-7V9z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="7" cy="17" r="2.1" fill="white"/>
+            <circle cx="17" cy="17" r="2.1" fill="white"/>
+          </svg>
+        </span>
+        <h1>FIPE Caminhões</h1>
+      </a>
+      <nav class="tabs" role="tablist" aria-label="Navegação principal">
+        <button class="tab active" data-view="consulta" role="tab" aria-selected="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Consulta
+        </button>
+        <button class="tab" data-view="favoritos" role="tab" aria-selected="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l-6.18 3.64 1.64-7.03L2 8.63l7.19-.62L12 1.5l2.81 6.51 7.19.62-5.46 5.28 1.64 7.03z"/></svg>
+          Favoritos
+        </button>
+        <span class="tab-indicator"></span>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="halos">
+        <div class="halo halo-a"></div>
+        <div class="halo halo-b"></div>
+      </div>
+      <div class="wrap hero-grid">
+        <div class="hero-left">
+          <div class="slogan">Seu caminhão, seu preço na hora certa.</div>
+          <h2 class="headline">Preço FIPE do mês mais recente em poucos passos</h2>
+          <div class="hero-rich">
+            <p>Selecione a marca, escolha o modelo e defina o ano. Em segundos você recebe o valor médio FIPE mais atual, direto da fonte oficial. Ideal para decisões de compra e venda, negociação, financiamento e seguro com segurança e clareza.</p>
+            <p>Guarde consultas importantes nos seus favoritos e acompanhe a atualização mensal com um clique. Gere relatórios completos e exporte para CSV ou XLSX para compartilhar com a equipe, cliente ou seguradora. Quando precisar, emita um comprovante de impressão com todos os dados consolidados.</p>
+            <p>Os dados são oficiais da Tabela FIPE, sempre no período de referência mais recente disponível, exclusivamente para caminhões. Desenvolvido por <strong>Kauan de Oliveira Tavares</strong>.</p>
+          </div>
+          <div class="cta">
+            <button class="btn big pulse" data-scroll="#consulta">
+              <span class="btn-ico">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              Consultar agora
+            </button>
+            <button class="btn ghost big hover-float" data-view="favoritos">
+              <span class="btn-ico">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l-6.18 3.64 1.64-7.03L2 8.63l7.19-.62L12 1.5l2.81 6.51 7.19.62-5.46 5.28 1.64 7.03z"/></svg>
+              </span>
+              Meus favoritos
+            </button>
+          </div>
+          <div class="hero-badges">
+            <span class="chip chip-primary">Dados oficiais FIPE</span>
+            <span class="chip">Somente caminhões</span>
+            <span class="chip">Referência atual</span>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="preview-card hover-lift">
+            <div class="preview-head">
+              <div class="ph-title">Consulta rápida</div>
+              <div class="ph-ref"><span id="heroRefMonth">carregando...</span></div>
+            </div>
+            <div class="preview-body">
+              <div class="skeleton s1"></div>
+              <div class="skeleton s2"></div>
+              <div class="skeleton s3"></div>
+              <div class="skeleton s4"></div>
+            </div>
+            <div class="preview-foot">
+              <div class="pf-price">R$ —</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view view-consulta active">
+      <div class="consult-wrap" id="consulta">
+        <div class="consult-card hover-lift">
+          <div class="consult-head">
+            <div class="title">
+              <h2>Consultar FIPE — Caminhões</h2>
+              <span class="chip chip-primary">Dados oficiais</span>
+              <span class="chip">Referência atual</span>
+            </div>
+            <div class="actions">
+              <button id="btnLimpar" class="btn ghost">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 6v12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="2"/></svg>
+                Limpar
+              </button>
+              <button id="btnImprimir" class="btn secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9V4h12v5" stroke="currentColor" stroke-width="2"/><rect x="6" y="13" width="12" height="7" stroke="currentColor" stroke-width="2"/><path d="M8 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Imprimir
+              </button>
+            </div>
+          </div>
+
+          <div class="form-xl">
+            <div class="field">
+              <label for="brandSelect">Marca</label>
+              <div class="select-wrap">
+                <select id="brandSelect" disabled></select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="modelSelect">Modelo</label>
+              <div class="select-wrap">
+                <select id="modelSelect" disabled></select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="yearSelect">Ano</label>
+              <div class="select-wrap">
+                <select id="yearSelect" disabled></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-grid">
+            <button id="btnConsultar" class="btn xl equal" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+              Consultar
+            </button>
+            <button id="btnCopy" class="btn secondary xl equal" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="13" stroke="currentColor" stroke-width="2"/><rect x="4" y="4" width="11" height="13" stroke="currentColor" stroke-width="2"/></svg>
+              Copiar valor
+            </button>
+            <button id="btnFav" class="btn ghost xl equal" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l-6.18 3.64 1.64-7.03L2 8.63l7.19-.62L12 1.5l2.81 6.51 7.19.62-5.46 5.28 1.64 7.03z"/></svg>
+              Favoritar
+            </button>
+          </div>
+
+          <div id="resultado" class="result-xxl hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view view-favoritos">
+      <div class="wrap">
+        <div class="card hover-lift">
+          <div class="row between">
+            <div>
+              <h2>Meus favoritos</h2>
+              <p class="desc">Acompanhe e atualize os valores salvos e gere relatórios completos.</p>
+            </div>
+            <div class="toolbar">
+              <button id="btnAtualizarTodos" class="btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 2.3 5.7" stroke="#fff" stroke-width="2"/><path d="M4 18v-4h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                Atualizar todos
+              </button>
+              <button id="btnExportCSV" class="btn secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Exportar CSV
+              </button>
+              <button id="btnExportXLSX" class="btn secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h10v6h6v10H4z"/><path fill="#fff" d="M7 17l3-4-3-4h2l2 3 2-3h2l-3 4 3 4h-2l-2-3-2 3z"/></svg>
+                Exportar XLSX
+              </button>
+              <button id="btnImprimirFav" class="btn ghost">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9V4h12v5" stroke="currentColor" stroke-width="2"/><rect x="6" y="13" width="12" height="7" stroke="currentColor" stroke-width="2"/><path d="M8 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Imprimir
+              </button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table id="favTable">
+              <thead>
+                <tr>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Ano</th>
+                  <th>Código FIPE</th>
+                  <th>Combustível</th>
+                  <th>Preço</th>
+                  <th>Referência</th>
+                  <th>Atualizado</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="favBody"></tbody>
+            </table>
+            <div id="favEmpty" class="empty">Nenhum favorito ainda</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="print-sheet" aria-hidden="true">
+    <div class="sheet">
+      <header class="sheet-head">
+        <div class="title">
+          <div>Consulta FIPE — Caminhões</div>
+          <small id="print-meta"></small>
+        </div>
+        <div class="src">Dados oficiais FIPE</div>
+      </header>
+      <div id="print-card" class="print-card"></div>
+      <footer class="sheet-foot">
+        <span>Desenvolvido por Kauan de Oliveira Tavares</span>
+        <span id="print-time"></span>
+      </footer>
+    </div>
+  </section>
+
+  <section id="print-fav" aria-hidden="true">
+    <div class="sheet">
+      <header class="sheet-head">
+        <div class="title">
+          <div>Relatório de Favoritos — Caminhões</div>
+          <small id="print-fav-meta"></small>
+        </div>
+        <div class="src">Dados oficiais FIPE</div>
+      </header>
+      <div id="print-fav-card" class="print-card"></div>
+      <footer class="sheet-foot">
+        <span>Desenvolvido por Kauan de Oliveira Tavares</span>
+        <span id="print-fav-time"></span>
+      </footer>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-row">
+      <small>FIPE Caminhões • Dados oficiais, referência atual • Desenvolvido por <strong>Kauan de Oliveira Tavares</strong></small>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast-root"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="config.local.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
